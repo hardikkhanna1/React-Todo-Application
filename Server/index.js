@@ -8,12 +8,14 @@ app.use(express.json());
 const todo_array = [];
 
 app.get('/',(req,res)=>{
+    
     res.json({
         "Message":"hello"
     });
 })
 
 app.post('/save',(req,res)=>{
+    console.log(req.body.todo);
     todo_array.push(req.body.todo);
     res.end();
 })
