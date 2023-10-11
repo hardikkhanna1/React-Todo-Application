@@ -3,7 +3,8 @@ const app = express();
 const cors = require('cors');
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json());// testing something
+
 
 const todo_array = [];
 
@@ -26,5 +27,5 @@ app.get('/getTodo',(req,res)=>{
 
 
 app.listen(8000,()=>{
-    console.log("backend is ready to pair");
+    console.log("backend is ready to pair");//testing third commit
 })
