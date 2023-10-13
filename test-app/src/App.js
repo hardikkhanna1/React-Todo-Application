@@ -9,7 +9,7 @@ function App() {
   const [todo,setTodo] = useState([]);
   
   useEffect(function(){
-    fetch('http://localhost:8000/getTodo')
+    fetch('http://localhost:8080/getTodo')
     .then(function(response){
       return response.json();
     })
@@ -23,9 +23,9 @@ function App() {
   },[]);
 
   function saveTodoToServer(ip){
-    return fetch('http://localhost:8000/save',{
+    return fetch('http://localhost:8080/save',{
       method:"POST",
-      body:JSON.stringify({"todo":ip}),
+      body:JSON.stringify({"todo":ip} ),
       headers:{
         "Content-Type":'application/json',
       },
@@ -42,18 +42,37 @@ function App() {
       return;
     }
 
-    await saveTodoToServer(ip);
-    var newTodo = [...todo,ip];
+    var response = await saveTodoToServer(ip);
+    var data = await response.json();
+    
+
+    var new_todo = data ;
+    var newTodo = [...todo,new_todo];
+    
     setTodo(newTodo);
     setip('');
+    
   }
   
   function DeleteTodo(ind){
     
-    delete todo[ind];
-    var newArr = [...todo];
-    setTodo(newArr)
-
+    fetch('http://localhost:8080/deleteTodo',{
+      method:"POST",
+      body:JSON.stringify({"todo_id":ind} ),
+      headers:{
+        "Content-Type":'application/json',
+      },
+    }).then(function(response){
+    
+    return response.json();
+    })
+    .then(function(data){
+      var new_array =[...data];
+      setTodo(new_array);
+    })
+    .catch(function(err){
+      console.log("error occured in deleting todo from backend");
+    })
   }
 
   return (

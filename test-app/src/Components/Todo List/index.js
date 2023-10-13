@@ -8,10 +8,8 @@ export default function TodoList(props){
         
             {props.todos.map(function(element,index){
                 if(element){
-                    return <ListItem content={element} ind={index} TodoDelete={props.todoDelete}></ListItem>
+                    return <ListItem content={element.todo_detail} db_id={element._id}  TodoDelete={props.todoDelete}></ListItem>
                 }
-            
-
             })}
         </ul>
         
