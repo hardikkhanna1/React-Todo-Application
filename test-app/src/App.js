@@ -71,6 +71,7 @@ function App() {
       setTodo(new_array);
     })
     .catch(function(err){
+      
       console.log("error occured in deleting todo from backend");
     })
   }
