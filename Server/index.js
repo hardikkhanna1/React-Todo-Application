@@ -3,7 +3,7 @@ const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
 
-const uri = "mongodb+srv://hardik_1:hardik123@cluster0.lfn5gjv.mongodb.net/?retryWrites=true&w=majority";
+const uri = "*******"; // Mongo db connection url. 
 var todo_schema = new mongoose.Schema({
     todo_detail : String
 })
